@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc32eae53b29740d087d62b6e1d98f7a, type: 3}
+  m_Name: witch
+  m_EditorClassIdentifier: 
+  display_name: "\u9B54\u5973"
+  image: witch
+  attack_image: 
+  hp: 17
+  str: 9
+  def: 6
+  agi: 9
+  isReverse: 0

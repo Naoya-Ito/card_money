@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9320b010d5448407cb41ae9fd1bb1e36, type: 3}
+  m_Name: muzai
+  m_EditorClassIdentifier: 
+  key: muzai
+  title: "\u9006\u8EE2\u88C1\u5224"
+  description: "\u7121\u7F6A\u3092\u52DD\u3061\u53D6\u308B\u3002"

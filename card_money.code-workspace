@@ -1,0 +1,11 @@
+{
+	"folders": [
+		{
+			"path": "."
+		}
+	],
+	"settings": {
+		"vim.vimrc.enable": true,
+		"dotnet.defaultSolution": "story.slnx"
+	}
+}
