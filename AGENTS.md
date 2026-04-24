@@ -34,6 +34,7 @@
 - Set Canvas render mode to Screen Space - Camera.
 - # UIはなるべく動的に追加しない。動的に追加する場合は実装前に確認を促す
 - Avoid adding UI dynamically when possible; ask for confirmation before implementing dynamic UI additions.
+- # コーディングルール
 - # クラス名には_や-は含まない。単語の始まりは大文字にして
 - Do not include _ or - in class names. Capitalize the start of each word.
 - # 未使用参照の変数は指示がない限り追加しない
@@ -42,6 +43,10 @@
 - Use uppercase English names for constants.
 - # 定数的な値は const または static readonly を使う（型に応じて使い分ける）
 - Use `const` or `static readonly` for constant-like values, depending on the type.
+- # コードの {} の始まりは改行せずに表示する（K&Rスタイル）
+- Code braces { should start on the same line without a newline (K&R style).
+- # インデントは2スペースにしてほしい
+- Use 2 spaces for indentation.
 - # 画面要素をスクリプトから動かす時は GameObject.Find を使わず Inspector で参照を割り当てる
 - When controlling screen UI elements from scripts, do not use `GameObject.Find`; assign references via the Inspector.
 - # 参照割り当てでなく GameObject.Find を使いたい場合は実装前に許可を確認する

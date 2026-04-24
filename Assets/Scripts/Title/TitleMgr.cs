@@ -132,6 +132,7 @@ public class TitleMgr : MonoBehaviour{
       CommonUtil.changePushedButtonImage(start_button);
     }
 
+    // デデータがあればロードして実行
     string pageKey = DataMgr.GetStr(AUTO_SAVE_PAGE_KEY);
     if (!string.IsNullOrEmpty(pageKey)) {
       DataMgr.SetStr("page", pageKey);
@@ -141,7 +142,8 @@ public class TitleMgr : MonoBehaviour{
 
     DataMgr.SetBool("pv_mode", false);
     InitDataMgr.initData();
-    CommonUtil.changeScene("GameScene");
+    //CommonUtil.changeScene("GameScene");
+    CommonUtil.changeScene("StoryScene");
   }
 
   private void startFirstGame(){
