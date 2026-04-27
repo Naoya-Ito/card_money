@@ -150,9 +150,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::StorySceneMgr
   main_text_area: {fileID: 872458071}
   tap_screen_area: {fileID: 1786371824}
-  image: {fileID: 0}
-  main_image_ui: {fileID: 0}
-  main_text: {fileID: 0}
+  image: {fileID: 1580214224}
+  main_image_ui: {fileID: 1041469329}
+  main_text: {fileID: 1735910525}
   faderScript: {fileID: 0}
 --- !u!4 &28613065
 Transform:

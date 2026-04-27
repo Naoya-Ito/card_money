@@ -2,12 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EndOpPageModel {
+public class EndOpPageModel : PageModel {
 
   public const string PAGE_KEY = "op/end";
 
   static public PageModel getPageData() {
-    PageModel model = new PageModel();
+    EndOpPageModel model = new EndOpPageModel();
     model.bgm = BGMMgr.KEY_DOKIDOKI;
     model.main_text = "「おーい」";
     model.main_bg = "bg/bg_town";
@@ -16,5 +16,10 @@ public class EndOpPageModel {
     model.next_page = StartUsagiPageModel.PAGE_KEY;
 
     return model;
+  }
+
+  public override bool TryTransitScene() {
+    CommonUtil.changeScene("GameScene");
+    return true;
   }
 }

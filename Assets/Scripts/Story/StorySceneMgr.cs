@@ -40,10 +40,10 @@ public class StorySceneMgr : MonoBehaviour {
   public void tappedScreen() {
     if (page == null) return;
     if (page.page_type != PageModel.PAGE_TYPE_NORMAL && page.page_type != PageModel.PAGE_TYPE_MAP_MOVE) return;
-    string key = page.next_page;
-    if (string.IsNullOrEmpty(key)) return;
+    string nextKey = page.next_page;
+    if (string.IsNullOrEmpty(nextKey)) return;
     // TODO 今のままでは動かない: PageModel.pushedTappedScreen は GameSceneMgr.instance に依存している可能性がある
-    PageModel.pushedTappedScreen(key);
+    PageModel.pushedTappedScreen(nextKey);
   }
 
   public void updateScene(string key) {
@@ -51,6 +51,9 @@ public class StorySceneMgr : MonoBehaviour {
     current_page_key = key;
     DataMgr.SetStr("page", key);
     page = PageModel.getPageModelByKey(key);
+    if (page.TryTransitScene()) {
+      return;
+    }
     localizedMainText = ResolveLocalizedPageText(key, "main_text", page.main_text);
     localizedSpeaker = ResolveLocalizedPageText(key, "speaker", page.speaker);
     if (page.page_type != PageModel.PAGE_TYPE_MAP_MOVE) {

@@ -25,11 +25,16 @@ public class PageModel {
   public bool isChangeScene = false;
   public bool isKappaDead = false;
 
-  static public void pushedTappedScreen(string key) {
-    // NOTE: このメソッドは GameScene でのページ進行を前提としているため、
-    // GameSceneMgr.instance を直接参照してページ遷移を行っている。
-    // StoryScene で使う場合は、GameSceneMgr に依存しない共通の遷移処理に移す必要がある。
-    switch (key) {
+  static public void pushedTappedScreen(string nextKey) {
+    PageModel model = getPageModelByKey(nextKey);
+    if (model.TryTransitScene()) {
+      return;
+    }
+
+    // NOTE: このメソッドは StoryScene でのページ進行を前提としているため、
+    // StorySceneMgr.instance を直接参照してページ遷移を行っている。
+    // GameScene で使う場合は、StorySceneMgr に依存しない共通の遷移処理に移す必要がある。
+    switch (nextKey) {
       case "op/end":
         DataMgr.SetInt("chapter", 1);
         CommonUtil.changeScene("GameScene");
@@ -38,19 +43,19 @@ public class PageModel {
         if (DataMgr.GetStr("page") == "maou/end") {
           CommonUtil.changeScene("EndingScene");
         } else {
-          // NOTE: StorySceneMgr にページ遷移を委譲しているため、
-          // StorySceneMgr.instance が存在する StoryScene から呼ぶ必要がある。
-          StorySceneMgr.instance.goToNextPage(key);
+          StorySceneMgr.instance.goToNextPage(nextKey);
         }
         break;
       case "chara/usagi":
       default:
-        //Debug.Log($"Error!! pushedTappedScreen. key={key}");
-        // NOTE: StorySceneMgr にページ遷移を委譲しているため、
-        // StorySceneMgr.instance が存在する StoryScene から呼ぶ必要がある。
-        StorySceneMgr.instance.goToNextPage(key);
+        //Debug.Log($"Error!! pushedTappedScreen. key={nextKey}");
+        StorySceneMgr.instance.goToNextPage(nextKey);
         break;
     }
+  }
+
+  public virtual bool TryTransitScene() {
+    return false;
   }
 
   static public Type getStaticObject(string key) {
