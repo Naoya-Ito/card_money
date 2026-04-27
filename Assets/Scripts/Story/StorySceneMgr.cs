@@ -32,10 +32,6 @@ public class StorySceneMgr : MonoBehaviour {
     }
   }
 
-  void Update() {
-    // TODO 今のままでは GameScene の更新処理は StoryScene で再現できていない
-  }
-
   public void goToNextPage(string key) {
     DataMgr.SetStr("page", key);
     updateScene(key);

@@ -52,7 +52,7 @@ public class InitDataMgr {
   // ゲーム開始時のデータ
   public static void initData(){
 //    DataMgr.SetStr("page", "op/start");
-    DataMgr.SetStr("page", "castle/op");
+    DataMgr.SetStr("page", Start1OpPageModel.PAGE_KEY);
     DataMgr.SetFloat("limit_time", 180f);
 
 
