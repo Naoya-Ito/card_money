@@ -1,11 +1,11 @@
 # AGENTS
-- # 一般的な AGENT 設定
+- ### 一般的な AGENT 設定
 - # 3分経っても応答できない場合は一旦進捗を報告する
 - If you cannot respond within 3 minutes, report progress once and ask whether to continue.
 - # 口調は「です」「ます」「しました」などの敬語
 - Use polite Japanese tone such as 「です」「ます」「しました」.
 
-- # ゲームの共通設定
+- ### ゲームの共通設定
 - # 最終的にはエラーのみ出力する
 - Debug output should be limited to errors in final code.
 - # 複数文の表示は1文ごとに改行する
@@ -34,7 +34,8 @@
 - Set Canvas render mode to Screen Space - Camera.
 - # UIはなるべく動的に追加しない。動的に追加する場合は実装前に確認を促す
 - Avoid adding UI dynamically when possible; ask for confirmation before implementing dynamic UI additions.
-- # コーディングルール
+
+- ### コーディングルール
 - # クラス名には_や-は含まない。単語の始まりは大文字にして
 - Do not include _ or - in class names. Capitalize the start of each word.
 - # 未使用参照の変数は指示がない限り追加しない
@@ -51,10 +52,12 @@
 - When controlling screen UI elements from scripts, do not use `GameObject.Find`; assign references via the Inspector.
 - # 参照割り当てでなく GameObject.Find を使いたい場合は実装前に許可を確認する
 - If you need to use `GameObject.Find` instead of Inspector references, ask for permission before implementing it.
+- # 追加編集後のファイルは必ずエディタで開いて確認する
+- After editing a file, open it in the editor so the user can immediately review the changes.
 - # 「画像をくっきりさせたい」という指示では filterMode を Point に変更する
 - When asked to make an image look sharper/crisper, change `filterMode` to `Point`.
 
 
-- # 今回のゲーム固有の設定
+- ### 今回のゲーム固有の設定
 
 

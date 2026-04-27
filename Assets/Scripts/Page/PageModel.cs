@@ -26,6 +26,9 @@ public class PageModel {
   public bool isKappaDead = false;
 
   static public void pushedTappedScreen(string key) {
+    // NOTE: このメソッドは GameScene でのページ進行を前提としているため、
+    // GameSceneMgr.instance を直接参照してページ遷移を行っている。
+    // StoryScene で使う場合は、GameSceneMgr に依存しない共通の遷移処理に移す必要がある。
     switch (key) {
       case "op/end":
         DataMgr.SetInt("chapter", 1);
@@ -35,13 +38,17 @@ public class PageModel {
         if (DataMgr.GetStr("page") == "maou/end") {
           CommonUtil.changeScene("EndingScene");
         } else {
-          GameSceneMgr.instance.goToNextPage(key);
+          // NOTE: StorySceneMgr にページ遷移を委譲しているため、
+          // StorySceneMgr.instance が存在する StoryScene から呼ぶ必要がある。
+          StorySceneMgr.instance.goToNextPage(key);
         }
         break;
       case "chara/usagi":
       default:
         //Debug.Log($"Error!! pushedTappedScreen. key={key}");
-        GameSceneMgr.instance.goToNextPage(key);
+        // NOTE: StorySceneMgr にページ遷移を委譲しているため、
+        // StorySceneMgr.instance が存在する StoryScene から呼ぶ必要がある。
+        StorySceneMgr.instance.goToNextPage(key);
         break;
     }
   }

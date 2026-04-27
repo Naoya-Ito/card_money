@@ -1322,12 +1322,6 @@ public class GameSceneMgr : MonoBehaviour {
     debug_page_text = obj.GetComponent<TextMeshProUGUI>();
   }
 
-  public void goToNextPage(string key){
-    DataMgr.SetStr("page", key);
-
-    updateScene(key);
-  }
-
   public void tappedScreen(){
     if (isLockedNoticeActive) return;
     if (isDiceActive) {
