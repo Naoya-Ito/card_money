@@ -13,7 +13,6 @@ public class StorySceneMgr : MonoBehaviour {
   [SerializeField] public Image image;
   [SerializeField] public Image main_image_ui;
   [SerializeField] public TextMeshProUGUI main_text;
-  [SerializeField] public ImageBinarizerByScript faderScript;
   [System.NonSerialized] public PageModel page;
   private string current_page_key = "";
   private string localizedMainText = "";
@@ -69,7 +68,6 @@ public class StorySceneMgr : MonoBehaviour {
     switch (page.page_type) {
       case PageModel.PAGE_TYPE_NORMAL:
         if (tap_screen_area != null) tap_screen_area.SetActive(true);
-        if (ChoiceModel.instance != null) ChoiceModel.instance.hideArea();
         if (main_text_area != null) main_text_area.SetActive(true);
         if (string.IsNullOrEmpty(localizedMainText)) {
           if (main_text_area != null) main_text_area.SetActive(false);
@@ -80,7 +78,6 @@ public class StorySceneMgr : MonoBehaviour {
         break;
       case PageModel.PAGE_TYPE_MAP_MOVE:
         if (tap_screen_area != null) tap_screen_area.SetActive(true);
-        if (ChoiceModel.instance != null) ChoiceModel.instance.hideArea();
         if (main_text_area != null) main_text_area.SetActive(true);
         if (string.IsNullOrEmpty(localizedMainText)) {
           if (main_text_area != null) main_text_area.SetActive(false);
@@ -92,17 +89,7 @@ public class StorySceneMgr : MonoBehaviour {
         break;
       case PageModel.PAGE_TYPE_CHOICE:
         if (tap_screen_area != null) tap_screen_area.SetActive(false);
-        if (ChoiceModel.instance != null) {
-          ChoiceModel.instance.showArea();
-          ChoiceModel.instance.EnsureButtonsVisible();
-          if (ChoiceModel.instance.choice_keys == null || ChoiceModel.instance.choice_keys.Count == 0) {
-            Debug.LogError($"choice page has no options. key={key}");
-          }
-        }
         if (main_text_area != null) main_text_area.SetActive(false);
-        if (!HasActiveChoiceButtons()) {
-          Debug.LogError($"choice page has no active buttons. key={key}");
-        }
         break;
       default:
         Debug.Log($"unknown page type. type={page.page_type}");
@@ -132,12 +119,6 @@ public class StorySceneMgr : MonoBehaviour {
     }
     MarkGallerySeenFromSprite(image != null ? image.sprite : null);
     UpdateMainImage(page);
-    if (faderScript != null) {
-      float progress = 0f; // TODO 今のままでは limit_time を StoryScene に移していない
-      if (image != null) {
-        faderScript.Init(image.sprite, progress);
-      }
-    }
   }
 
   private void updateNameArea() {
@@ -223,17 +204,5 @@ public class StorySceneMgr : MonoBehaviour {
     if (key == "maou/gokuri2") return "other/cutin";
     if (key == "maou/dog_talk1") return "240_135/kappa_hello";
     return "240_135/nandate";
-  }
-
-  private bool HasActiveChoiceButtons() {
-    if (ChoiceModel.instance == null) return false;
-    GameObject area = ChoiceModel.instance.choice_area != null ? ChoiceModel.instance.choice_area.gameObject : null;
-    if (area == null || !area.activeSelf) return false;
-    GameObject b1 = ChoiceModel.instance.button1;
-    GameObject b2 = ChoiceModel.instance.button2;
-    GameObject b3 = ChoiceModel.instance.button3;
-    return (b1 != null && b1.activeInHierarchy)
-      || (b2 != null && b2.activeInHierarchy)
-      || (b3 != null && b3.activeInHierarchy);
   }
 }

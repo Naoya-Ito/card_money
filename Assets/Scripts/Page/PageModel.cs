@@ -133,8 +133,6 @@ public class PageModel {
 
   public void setPageTypeChoice() {
     page_type = PAGE_TYPE_CHOICE;
-    ChoiceModel.instance.initChoice();
-
   }
 
   public void setPageTypeMapMove() {

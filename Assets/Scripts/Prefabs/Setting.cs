@@ -11,7 +11,6 @@ public class Setting : MonoBehaviour {
   [SerializeField] Slider bgmSlider;
   [SerializeField] public Toggle changeSceneTimeToggle;
   [SerializeField] public Toggle changeDayToggle;
-  [SerializeField] private Toggle debug_mode_toggle;
 
   [SerializeField] public Button giveup_button;
   [SerializeField] public Button title_button;
@@ -24,7 +23,6 @@ public class Setting : MonoBehaviour {
   [SerializeField] private TextMeshProUGUI day_label;
   [SerializeField] private TextMeshProUGUI reset_label;
   [SerializeField] private TextMeshProUGUI volume_label;
-  [SerializeField] private TextMeshProUGUI debug_label;
 
   [System.NonSerialized] public static Setting instance = null;
   private bool localeBound = false;
@@ -65,11 +63,6 @@ public class Setting : MonoBehaviour {
 
     changeSceneTimeToggle.isOn = DataMgr.GetBool("change_scene_time_speed_up");
     changeDayToggle.isOn = DataMgr.GetBool("change_day_speed_up");
-    if (debug_mode_toggle != null) {
-      debug_mode_toggle.isOn = DataMgr.GetBool("debug_mode");
-      debug_mode_toggle.onValueChanged.RemoveAllListeners();
-      debug_mode_toggle.onValueChanged.AddListener(_ => OnDebugModeToggleChanged());
-    }
     if (language_button != null) {
       language_button.onClick.RemoveAllListeners();
       language_button.onClick.AddListener(ToggleLanguage);
@@ -158,13 +151,6 @@ public class Setting : MonoBehaviour {
     DataMgr.SetBool("change_day_speed_up", changeDayToggle.isOn);
   }
 
-  public void OnDebugModeToggleChanged() {
-    if (debug_mode_toggle == null) return;
-    DataMgr.SetBool("debug_mode", debug_mode_toggle.isOn);
-    if (GameSceneMgr.instance != null) {
-      GameSceneMgr.instance.RefreshDebugPageName();
-    }
-  }
 
   private void ToggleLanguage() {
     LocalizationUtil.ToggleLocale();
@@ -192,9 +178,6 @@ public class Setting : MonoBehaviour {
     }
     if (volume_label != null) {
       volume_label.text = LocalizationUtil.GetOrDefault(LocalizationKeys.SettingVolume, "音量");
-    }
-    if (debug_label != null) {
-      debug_label.text = LocalizationUtil.GetOrDefault(LocalizationKeys.SettingDebugMode, "デバッグモード");
     }
     UpdateLanguageLabel();
   }
